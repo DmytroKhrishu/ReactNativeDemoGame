@@ -1,6 +1,8 @@
-import { Alert, StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, View } from 'react-native';
 import Title from '../components/ui/Title';
 import { useEffect, useState } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+
 import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import Card from '../components/ui/Card';
@@ -60,16 +62,18 @@ export default function GameScreen({ userNumber, onGameOver }) {
       <Title>Opponent's guess</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card>
-        <InstructionText>Higher or lower?</InstructionText>
+        <InstructionText style={styles.instructionText}>
+          Higher or lower?
+        </InstructionText>
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
             <PrimaryButton onPress={() => nextGuessHandler('greater')}>
-              +
+              <Ionicons name="add" size={24} color="white" />
             </PrimaryButton>
           </View>
           <View style={styles.buttonContainer}>
             <PrimaryButton onPress={() => nextGuessHandler('lower')}>
-              -
+              <Ionicons name="remove" size={24} color="white" />
             </PrimaryButton>
           </View>
         </View>
@@ -82,6 +86,10 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     padding: 20,
+    marginTop: 150
+  },
+  instructionText: {
+    marginBottom: 12,
   },
   buttonsContainer: {
     flexDirection: 'row',
