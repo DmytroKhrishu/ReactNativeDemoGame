@@ -54,6 +54,6 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontFamily: 'open-sans-bold',
-    color: Colors.accent500,
+    color: Colors.primary500,
   },
 });
