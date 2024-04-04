@@ -14,6 +14,7 @@ import GameOverScreen from './screens/GameOverScreen';
 export default function App() {
   const [userNumber, setUserNumber] = useState();
   const [gameIsOver, setGameIsOver] = useState(true);
+  const [guessRounds, setGuessRounds] = useState(0);
 
   const [fontsLoaded] = useFonts({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
@@ -45,7 +46,8 @@ export default function App() {
 
   function restartHandler() {
     setUserNumber(null);
-    screen = <StartGameScreen onNumberPicked={numberPickerHandler} />;
+    setGuessRounds(0)
+    // screen = <StartGameScreen onNumberPicked={numberPickerHandler} />;
   }
 
   if (userNumber) {
@@ -55,7 +57,13 @@ export default function App() {
   }
 
   if (gameIsOver && userNumber) {
-    screen = <GameOverScreen onRestart={restartHandler} />;
+    screen = (
+      <GameOverScreen
+        onRestart={restartHandler}
+        userNumber={userNumber}
+        roundsNumber={guessRounds}
+      />
+    );
   }
 
   return (

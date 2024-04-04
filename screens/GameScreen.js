@@ -28,6 +28,8 @@ export default function GameScreen({ userNumber, onGameOver }) {
   useEffect(() => {
     if (currentGuess === userNumber) {
       onGameOver();
+      minBoundary = 1;
+      maxBoundary = 100;
     }
   }, [currentGuess, userNumber, onGameOver]);
 
@@ -86,7 +88,7 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     padding: 20,
-    marginTop: 150
+    marginTop: 150,
   },
   instructionText: {
     marginBottom: 12,
