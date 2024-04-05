@@ -1,4 +1,10 @@
-import { Alert, Dimensions, StyleSheet, TextInput, View } from 'react-native';
+import {
+  Alert,
+  useWindowDimensions,
+  StyleSheet,
+  TextInput,
+  View,
+} from 'react-native';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import { useState } from 'react';
 import Colors from '../constants/colors';
@@ -8,6 +14,8 @@ import InstructionText from '../components/ui/InstructionText';
 
 export default function StartGameScreen({ onNumberPicked }) {
   const [enteredNumber, setEnteredNumber] = useState('');
+
+  const { width, height } = useWindowDimensions();
 
   function numberInputHandler(enteredText) {
     setEnteredNumber(enteredText);
@@ -32,8 +40,10 @@ export default function StartGameScreen({ onNumberPicked }) {
     onNumberPicked(chosenNumber);
   }
 
+  const marginTopDistance = height < 380 ? 30 : 100;
+
   return (
-    <View style={styles.rootContainer}>
+    <View style={[styles.rootContainer, {marginTop: marginTopDistance}]}>
       <Title>Random numba game</Title>
       <Card>
         <InstructionText>Please enter a number</InstructionText>
@@ -59,12 +69,12 @@ export default function StartGameScreen({ onNumberPicked }) {
   );
 }
 
-const deviceHeight = Dimensions.get('window').height;
+// const deviceHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    marginTop: deviceHeight < 400 ? 30 : 100,
+    // marginTop: deviceHeight < 380 ? 30 : 100,
     alignItems: 'center',
   },
 
